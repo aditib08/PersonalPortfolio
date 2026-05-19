@@ -8,7 +8,7 @@ function Projects() {
       <h1 className="pageOmbreTitle">Projects</h1>
       <p className="projectsHead">
         "An idea is like a virus. Resilient. Highly contagious. And even the smallest seed of an idea can grow. It can grow to define or destroy you."
-        <br /> - Dom Cobb
+        <br />  <br />  Dom Cobb | Inception 
       </p>
 
       <div className="projectsList">

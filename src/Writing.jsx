@@ -8,7 +8,7 @@ function Writing() {
       <h1 className="pageOmbreTitle">Writing</h1>
       <p className="writingHead">
         "When we pass over into how a knight thinks, how a slave feels, how a heroine behaves, and how an evildoer can regret or deny wrongdoing, we never come back quite the same; sometimes we're inspired, sometimes saddened, but we are always enriched."
-        <br /> - Maryanne Wolf
+        <br />  <br /> Maryanne Wolf | Reader, Come Home
       </p>
 
       <div className="articles-container">

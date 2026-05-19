@@ -17,7 +17,7 @@
   display: flex;
   justify-content: center;
   gap: 8px;
-  padding: 16px 24px;
+  padding: 8px 24px 6px;
   border-bottom: 1px solid var(--border, #e5e4e7);
   font-family: 'Lucida Console', monospace;
 }
@@ -28,7 +28,7 @@
   color: #222021;
   text-decoration: none;
   font-size: 18px;
-  padding: 10px 24px;
+  padding: 6px 20px;
   border-radius: 4px;
   background: transparent;
   transition: color 0.2s;
@@ -63,20 +63,65 @@
   }
 }
 
+.homePage {
+  display: flex;
+  flex-direction: column;
+  overflow: visible;
+  width: 100%;
+  box-sizing: border-box;
+  text-align: left;
+}
+
+.homeIntro {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 28px 40px 0;
+  box-sizing: border-box;
+}
+
 .homeHead {
   font-family: 'Lucida Console', monospace;
-  color: #222021;
   font-size: 40px;
-  margin: 40px;
-  min-height: 1.2em;
+  font-weight: 400;
+  line-height: 1.15;
+  color: #222021;
+  margin: 0;
+  padding: 0;
+  display: block;
+  box-sizing: border-box;
+  text-align: center;
 }
 
 .homeHeadCursor {
   display: inline-block;
-  width: 0.6em;
+  width: 3px;
   margin-left: 2px;
   border-right: 3px solid #222021;
+  vertical-align: baseline;
   animation: homeHeadBlink 0.75s step-end infinite;
+}
+
+.homeAbout--visible {
+  animation: homeContentFadeIn 0.6s ease 0.15s forwards;
+  opacity: 0;
+}
+
+.homePage:has(.homeAbout--visible) {
+  padding: 0 0 48px;
+  box-sizing: border-box;
+}
+
+@keyframes homeContentFadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
 
 @keyframes homeHeadBlink {
@@ -85,11 +130,107 @@
   }
 }
 
+.homeAbout {
+  width: 100%;
+  margin: 48px 0 0;
+  padding: 0 40px;
+  box-sizing: border-box;
+  text-align: left;
+}
+
+.homeAboutLayout {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(340px, 48%);
+  gap: 48px;
+  align-items: center;
+  max-width: 1100px;
+}
+
+.homeAboutText {
+  min-width: 0;
+}
+
+.homeAboutTitle {
+  font-family: 'Lucida Console', monospace;
+  font-size: clamp(48px, 9vw, 88px);
+  font-weight: 700;
+  line-height: 1.05;
+  text-align: left;
+  margin: 0 0 20px;
+  padding: 0 0 0.08em;
+  background: var(--ombre-gradient);
+  background-size: 220% 100%;
+  background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  animation: ombreShift 2.5s ease-in-out infinite alternate;
+}
+
+.homeAboutPhoto {
+  width: 100%;
+  margin-top: 50px;
+  border-radius: 16px;
+  overflow: hidden;
+  border: 1px solid #e5e4e7;
+}
+
+.homeAboutPhotoImg {
+  display: block;
+  width: 100%;
+  height: auto;
+  min-height: 320px;
+  object-fit: cover;
+  object-position: center 30%;
+}
+
 .homeBody {
   font-family: 'Lucida Console', monospace;
   color: #222021;
   font-size: 20px;
-  margin: 40px;
+  line-height: 1.6;
+  margin: 0;
+  max-width: 36rem;
+}
+
+.homeQuote {
+  font-family: 'Lucida Console', monospace;
+  color: #222021;
+  font-size: 20px;
+  width: 100%;
+  max-width: 52rem;
+  margin: 20px 0 0;
+  padding: 0;
+  box-sizing: border-box;
+  text-align: center;
+  animation: homeContentFadeIn 0.6s ease forwards;
+}
+
+@media (max-width: 768px) {
+  .homeIntro {
+    padding: 20px 24px 0;
+  }
+
+  .homeAbout {
+    padding: 0 24px;
+  }
+
+  .homePage:has(.homeAbout--visible) {
+    padding: 0 0 32px;
+  }
+
+  .homeAboutLayout {
+    grid-template-columns: 1fr;
+    max-width: none;
+  }
+
+  .homeAboutPhoto {
+    max-width: none;
+  }
+
+  .homeAboutPhotoImg {
+    min-height: 260px;
+  }
+
 }
 
 .pageOmbreTitle {
