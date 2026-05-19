@@ -1,8 +1,88 @@
+:root {
+  --accent-light-blue: #85ccf2;
+  --ombre-gradient: linear-gradient(
+    90deg,
+    #ffef70 0%,
+    #fff59d 14%,
+    #ffe978 28%,
+    #b8ddf5 42%,
+    var(--accent-light-blue) 56%,
+    #7ecdf5 70%,
+    #ffe978 84%,
+    #fff59d 100%
+  );
+}
+
+.navBar {
+  display: flex;
+  justify-content: center;
+  gap: 8px;
+  padding: 16px 24px;
+  border-bottom: 1px solid var(--border, #e5e4e7);
+  font-family: 'Lucida Console', monospace;
+}
+
+.navLink {
+  position: relative;
+  z-index: 0;
+  color: #222021;
+  text-decoration: none;
+  font-size: 18px;
+  padding: 10px 24px;
+  border-radius: 4px;
+  background: transparent;
+  transition: color 0.2s;
+}
+
+.navLink::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  border-radius: 4px;
+  opacity: 0;
+  background: var(--ombre-gradient);
+  background-size: 220% 100%;
+  background-position: 0% 50%;
+  transition: opacity 0.25s ease;
+}
+
+.navLink:hover::before,
+.navLink:focus-visible::before {
+  opacity: 1;
+  animation: ombreShiftNav 1s ease-in-out infinite alternate;
+}
+
+@keyframes ombreShiftNav {
+  0% {
+    background-position: 0% 50%;
+  }
+
+  100% {
+    background-position: 40% 50%;
+  }
+}
+
 .homeHead {
   font-family: 'Lucida Console', monospace;
   color: #222021;
   font-size: 40px;
   margin: 40px;
+  min-height: 1.2em;
+}
+
+.homeHeadCursor {
+  display: inline-block;
+  width: 0.6em;
+  margin-left: 2px;
+  border-right: 3px solid #222021;
+  animation: homeHeadBlink 0.75s step-end infinite;
+}
+
+@keyframes homeHeadBlink {
+  50% {
+    opacity: 0;
+  }
 }
 
 .homeBody {
@@ -12,11 +92,41 @@
   margin: 40px;
 }
 
+.pageOmbreTitle {
+  font-family: 'Lucida Console', monospace;
+  font-size: clamp(56px, 11vw, 104px);
+  font-weight: 700;
+  line-height: 1.1;
+  text-align: center;
+  margin: 48px 40px 40px;
+  background: var(--ombre-gradient);
+  background-size: 220% 100%;
+  background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  animation: ombreShift 2.5s ease-in-out infinite alternate;
+}
+
+@keyframes ombreShift {
+  0% {
+    background-position: 0% 50%;
+  }
+
+  100% {
+    background-position: 40% 50%;
+  }
+}
+
 .projectsHead {
   font-family: 'Lucida Console', monospace;
   color: #222021;
   font-size: 20px;
   margin: 40px;
+  text-align: center;
+}
+
+.writingPage {
+  text-align: center;
 }
 
 .writingHead {
@@ -24,6 +134,7 @@
   color: #222021;
   font-size: 20px;
   margin: 40px;
+  text-align: center;
 }
 
 .projectsButton, .writingButton {
@@ -80,4 +191,289 @@
   color: #222021;
   flex: 1;
   min-width: 0;
+}
+
+.projectsPage {
+  text-align: left;
+}
+
+.projectsList {
+  --brand-preview-height: 292px;
+  --brand-logo-row-height: 140px;
+  display: flex;
+  flex-direction: column;
+  gap: 40px;
+  padding: 0 40px 60px;
+}
+
+.projectCard {
+  background-color: #f5f5f5;
+  border-radius: 24px;
+  padding: 40px;
+}
+
+.projectCardHeader {
+  display: flex;
+  align-items: flex-start;
+  gap: 16px;
+  margin-bottom: 28px;
+}
+
+.projectCardTitle {
+  font-family: 'Lucida Console', monospace;
+  font-weight: 700;
+  font-size: clamp(28px, 4vw, 40px);
+  line-height: 1.2;
+  color: #222021;
+  margin: 0;
+  flex: 1;
+}
+
+.projectCardLink {
+  color: #008CBA;
+  display: flex;
+  align-items: center;
+  flex-shrink: 0;
+  margin-top: 8px;
+  transition: opacity 0.2s;
+}
+
+.projectCardLink:hover {
+  opacity: 0.75;
+}
+
+.projectCardBody {
+  display: grid;
+  grid-template-columns: minmax(0, 0.75fr) minmax(0, 1.25fr);
+  gap: 28px;
+  align-items: stretch;
+  margin-bottom: 32px;
+}
+
+.projectCardBullets {
+  font-family: 'Lucida Console', monospace;
+  color: #222021;
+  font-size: 16px;
+  line-height: 1.6;
+  margin: 0;
+  padding-left: 1.25em;
+}
+
+.projectCardBullets li {
+  margin-bottom: 12px;
+}
+
+.projectCardBullets li:last-child {
+  margin-bottom: 0;
+}
+
+.projectPreview {
+  position: relative;
+  width: 100%;
+  overflow: hidden;
+  box-sizing: border-box;
+}
+
+.projectPreviewBrand {
+  background: var(--brand-bg, #f8f9fb);
+  border-radius: 16px;
+  height: var(--brand-preview-height);
+  min-height: var(--brand-preview-height);
+  max-height: var(--brand-preview-height);
+  align-self: start;
+}
+
+.projectPreview:not(.projectPreviewBrand) {
+  min-height: 320px;
+}
+
+.projectPreviewImg {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: top center;
+  border: none;
+  outline: none;
+}
+
+.projectBrandPreview {
+  position: absolute;
+  inset: 0;
+  display: grid;
+  grid-template-rows: auto var(--brand-logo-row-height) auto;
+  align-items: center;
+  justify-items: center;
+  gap: 12px;
+  padding: 20px 28px 24px;
+  text-align: center;
+  background: var(--brand-bg, #f8f9fb);
+  box-sizing: border-box;
+}
+
+.projectBrandPreviewNoTagline:not(.projectBrandPreviewTextOverImage) {
+  grid-template-rows: auto var(--brand-logo-row-height);
+}
+
+.projectBrandPreviewTextOverImage {
+  grid-template-rows: auto var(--brand-logo-row-height) auto;
+  position: relative;
+}
+
+.projectBrandPreviewTextOverImage .projectBrandLogoWrap,
+.projectBrandPreview .projectBrandLogoWrap {
+  grid-row: 2;
+  width: 100%;
+  height: var(--brand-logo-row-height);
+  max-height: var(--brand-logo-row-height);
+  min-height: var(--brand-logo-row-height);
+  flex: none;
+}
+
+.projectBrandPreviewTextOverImage .projectBrandLogo,
+.projectBrandPreview .projectBrandLogo {
+  max-height: 100%;
+  height: 100%;
+  width: auto;
+  object-fit: contain;
+  transform: none;
+}
+
+.projectBrandPreviewTextOverImage .projectBrandNameSpacer {
+  grid-row: 1;
+  visibility: hidden;
+  margin: 12px 0 0;
+  padding: 0 20px;
+}
+
+.projectBrandPreviewTextOverImage .projectBrandName:not(.projectBrandNameSpacer) {
+  position: absolute;
+  top: 32px;
+  left: 0;
+  right: 0;
+  z-index: 2;
+  margin: 0;
+  padding: 0 20px;
+}
+
+.projectBrandPreviewTextOverImage .projectBrandTaglineSpacer {
+  grid-row: 3;
+  visibility: hidden;
+  margin: 0;
+  min-height: 0;
+  line-height: 1.5;
+  font-size: clamp(14px, 2vw, 18px);
+  font-family: 'Lucida Console', monospace;
+}
+
+.projectBrandName {
+  font-family: 'Lucida Console', monospace;
+  font-weight: 700;
+  font-size: clamp(26px, 3.5vw, 36px);
+  color: var(--brand-text, #222021);
+  margin: 12px 0 0;
+  align-self: start;
+  justify-self: center;
+}
+
+.projectBrandLogoWrap {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--brand-bg, #f8f9fb);
+}
+
+.projectBrandLogo {
+  width: auto;
+  max-width: 100%;
+  object-fit: contain;
+  object-position: center;
+  border: none;
+}
+
+.projectBrandTagline {
+  font-family: 'Lucida Console', monospace;
+  font-size: clamp(14px, 2vw, 18px);
+  color: var(--brand-text, #222021);
+  margin: 0;
+  line-height: 1.5;
+  align-self: end;
+  justify-self: center;
+}
+
+.projectPreviewPlaceholder {
+  font-family: 'Lucida Console', monospace;
+  color: #666;
+  font-size: 14px;
+  line-height: 1.5;
+  text-align: left;
+  width: 100%;
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  box-sizing: border-box;
+  background: #fff;
+  border-radius: 12px;
+}
+
+.projectPreviewHeading {
+  font-weight: bold;
+  color: #222021;
+  margin: 0 0 12px;
+  font-size: 16px;
+}
+
+.projectPreviewPlaceholder p:last-child {
+  margin: 0;
+}
+
+.projectCardFooter {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  flex-wrap: wrap;
+}
+
+.projectGithubLink {
+  color: #222021;
+  display: flex;
+  align-items: center;
+  flex-shrink: 0;
+  transition: opacity 0.2s;
+}
+
+.projectGithubLink:hover {
+  opacity: 0.7;
+}
+
+.projectTags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.projectTag {
+  font-family: 'Lucida Console', monospace;
+  font-size: 14px;
+  color: #222021;
+  background: #fff;
+  border: 1px solid #222021;
+  border-radius: 50px;
+  padding: 6px 16px;
+}
+
+@media (max-width: 900px) {
+  .projectsList {
+    padding: 0 24px 48px;
+  }
+
+  .projectCard {
+    padding: 28px;
+  }
+
+  .projectCardBody {
+    grid-template-columns: 1fr;
+  }
 }
