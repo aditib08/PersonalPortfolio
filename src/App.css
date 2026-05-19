@@ -1,0 +1,78 @@
+.homeHead {
+  font-family: 'Courier New', monospace;
+  color: black;
+  font-size: 30px;
+  margin: 40px;
+}
+
+.projectsHead {
+  font-family: 'Courier New', monospace;
+  color: black;
+  font-size: 20px;
+  margin: 40px;
+}
+
+.projectsButton {
+  background-color: #008CBA;
+  border: none;
+  color: white;
+  padding: 15px 32px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 30px;
+  font-family: 'Courier New', monospace;
+  margin: 100px 4px 2px;
+  cursor: pointer;
+}
+
+.writingHead {
+  font-family: 'Courier New', monospace;
+  color: black;
+  font-size: 20px;
+  margin: 40px;
+}
+
+.writingButton {
+  background-color: #008CBA; 
+  border: none;
+  color: white;
+  padding: 15px 32px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 30px;
+  font-family: 'Courier New', monospace;
+  margin: 100px 4px 2px;
+  cursor: pointer;
+}
+
+.burnoutarticle {
+  width: 400px;
+  border-radius: 15px;
+  overflow: hidden;
+  cursor: pointer;
+}
+
+.burnoutarticle img {
+  width: 100%;
+}
+
+.burnoutarticle p {
+  font-size: 20px;
+  font-weight: bold;
+  background-color: #e8e8e8;
+  padding: 20px;
+  margin: 0;
+}
+
+.burnoutarticle-container {
+  margin: 60px 0px 0px 60px;
+  display: flex;
+  gap: 20px;
+}
+
+a {
+  text-decoration: none;
+  color: black;
+}
