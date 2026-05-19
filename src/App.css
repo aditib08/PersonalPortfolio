@@ -94,11 +94,11 @@
 
 .pageOmbreTitle {
   font-family: 'Lucida Console', monospace;
-  font-size: clamp(56px, 11vw, 104px);
+  font-size: clamp(72px, 15vw, 140px);
   font-weight: 700;
-  line-height: 1.1;
+  line-height: 1.05;
   text-align: center;
-  margin: 48px 40px 40px;
+  margin: 56px 32px 48px;
   background: var(--ombre-gradient);
   background-size: 220% 100%;
   background-clip: text;
@@ -173,12 +173,12 @@
 
 .article-card img {
   width: 100%;
-  height: 400px;
+  height: 460px;
   object-fit: cover;
 }
 
 .article-card p {
-  font-size: 20px;
+  font-size: 24px;
   font-family: 'Lucida Console', monospace;
   font-weight: bold;
   background-color: #e8e8e8;
@@ -198,8 +198,8 @@
 }
 
 .projectsList {
-  --brand-preview-height: 292px;
-  --brand-logo-row-height: 140px;
+  --brand-preview-height: 340px;
+  --brand-logo-row-height: 168px;
   display: flex;
   flex-direction: column;
   gap: 40px;
@@ -209,7 +209,7 @@
 .projectCard {
   background-color: #f5f5f5;
   border-radius: 24px;
-  padding: 40px;
+  padding: 48px;
 }
 
 .projectCardHeader {
@@ -222,7 +222,7 @@
 .projectCardTitle {
   font-family: 'Lucida Console', monospace;
   font-weight: 700;
-  font-size: clamp(28px, 4vw, 40px);
+  font-size: clamp(32px, 5vw, 48px);
   line-height: 1.2;
   color: #222021;
   margin: 0;
@@ -246,8 +246,29 @@
   display: grid;
   grid-template-columns: minmax(0, 0.75fr) minmax(0, 1.25fr);
   gap: 28px;
-  align-items: stretch;
+  align-items: start;
   margin-bottom: 32px;
+}
+
+.projectCardBodyTextOnly {
+  grid-template-columns: 1fr;
+  max-width: 52rem;
+}
+
+.projectCardDescription {
+  font-family: 'Lucida Console', monospace;
+  color: #222021;
+  font-size: 16px;
+  line-height: 1.6;
+  margin: 0;
+}
+
+.projectCardDescription p {
+  margin: 0 0 12px;
+}
+
+.projectCardDescription p:last-child {
+  margin-bottom: 0;
 }
 
 .projectCardBullets {
@@ -268,22 +289,50 @@
 }
 
 .projectPreview {
+  --project-preview-radius: 24px;
   position: relative;
   width: 100%;
   overflow: hidden;
   box-sizing: border-box;
+  border-radius: var(--project-preview-radius);
 }
 
 .projectPreviewBrand {
   background: var(--brand-bg, #f8f9fb);
-  border-radius: 16px;
+  border-radius: var(--project-preview-radius);
   height: var(--brand-preview-height);
   min-height: var(--brand-preview-height);
   max-height: var(--brand-preview-height);
   align-self: start;
 }
 
-.projectPreview:not(.projectPreviewBrand) {
+.projectPreviewScreenshot {
+  height: var(--brand-preview-height);
+  min-height: var(--brand-preview-height);
+  max-height: var(--brand-preview-height);
+  border-radius: var(--project-preview-radius);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 2px;
+  box-sizing: border-box;
+}
+
+.projectPreviewScreenshot .projectPreviewImg {
+  position: static;
+  inset: auto;
+  width: auto;
+  height: auto;
+  max-width: 100%;
+  max-height: 100%;
+  object-fit: contain;
+  object-position: center;
+  border: none;
+  outline: none;
+  display: block;
+}
+
+.projectPreview:not(.projectPreviewBrand):not(.projectPreviewScreenshot) {
   min-height: 320px;
 }
 
@@ -310,6 +359,31 @@
   text-align: center;
   background: var(--brand-bg, #f8f9fb);
   box-sizing: border-box;
+  border-radius: inherit;
+}
+
+.projectBrandPreviewLogoOnly {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.projectBrandPreviewLogoOnly .projectBrandLogoWrap {
+  flex: 1;
+  width: 100%;
+  height: 100%;
+  max-height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.projectBrandPreviewLogoOnly .projectBrandLogo {
+  width: auto;
+  max-width: 90%;
+  max-height: 52%;
+  height: auto;
+  object-fit: contain;
 }
 
 .projectBrandPreviewNoTagline:not(.projectBrandPreviewTextOverImage) {
@@ -317,8 +391,9 @@
 }
 
 .projectBrandPreviewTextOverImage {
-  grid-template-rows: auto var(--brand-logo-row-height) auto;
-  position: relative;
+  display: block;
+  padding: 0;
+  background: transparent;
 }
 
 .projectBrandPreviewTextOverImage .projectBrandLogoWrap,
@@ -331,6 +406,17 @@
   flex: none;
 }
 
+.projectBrandPreviewTextOverImage .projectBrandLogoWrap {
+  position: absolute;
+  inset: 0;
+  grid-row: unset;
+  height: 100%;
+  max-height: none;
+  min-height: 0;
+  border-radius: inherit;
+  overflow: hidden;
+}
+
 .projectBrandPreviewTextOverImage .projectBrandLogo,
 .projectBrandPreview .projectBrandLogo {
   max-height: 100%;
@@ -340,31 +426,41 @@
   transform: none;
 }
 
-.projectBrandPreviewTextOverImage .projectBrandNameSpacer {
-  grid-row: 1;
-  visibility: hidden;
-  margin: 12px 0 0;
-  padding: 0 20px;
+.projectBrandPreviewTextOverImage .projectBrandLogo {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+  border-radius: 0;
 }
 
-.projectBrandPreviewTextOverImage .projectBrandName:not(.projectBrandNameSpacer) {
+.projectBrandPreviewTextOverImage .projectBrandName,
+.projectBrandPreviewTextOverImage .projectBrandTagline {
+  color: #fff;
+}
+
+.projectBrandPreviewTextOverImage .projectBrandName {
   position: absolute;
-  top: 32px;
+  top: 28px;
   left: 0;
   right: 0;
   z-index: 2;
   margin: 0;
-  padding: 0 20px;
+  padding: 0 24px;
+  text-shadow: 0 2px 16px rgba(0, 0, 0, 0.55);
 }
 
-.projectBrandPreviewTextOverImage .projectBrandTaglineSpacer {
-  grid-row: 3;
-  visibility: hidden;
+.projectBrandPreviewTextOverImage .projectBrandTagline {
+  position: absolute;
+  bottom: 28px;
+  left: 0;
+  right: 0;
+  z-index: 2;
   margin: 0;
-  min-height: 0;
-  line-height: 1.5;
-  font-size: clamp(14px, 2vw, 18px);
-  font-family: 'Lucida Console', monospace;
+  padding: 0 24px;
+  align-self: unset;
+  justify-self: unset;
+  text-shadow: 0 2px 16px rgba(0, 0, 0, 0.55);
 }
 
 .projectBrandName {
@@ -390,6 +486,7 @@
   object-fit: contain;
   object-position: center;
   border: none;
+  border-radius: 12px;
 }
 
 .projectBrandTagline {
@@ -415,7 +512,7 @@
   justify-content: center;
   box-sizing: border-box;
   background: #fff;
-  border-radius: 12px;
+  border-radius: var(--project-preview-radius, 24px);
 }
 
 .projectPreviewHeading {

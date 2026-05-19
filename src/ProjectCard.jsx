@@ -1,4 +1,5 @@
 import './App.css'
+import { SHOW_PROJECT_PREVIEWS } from './projectsData'
 
 function LinkIcon() {
   return (
@@ -30,7 +31,19 @@ function GitHubIcon() {
   )
 }
 
-function ProjectCard({ title, projectUrl, githubUrl, bullets, previewImage, previewAlt, brandPreview, tags }) {
+function ProjectCard({
+  title,
+  projectUrl,
+  githubUrl,
+  bullets,
+  description,
+  previewImage,
+  previewAlt,
+  previewBackground,
+  previewPadding,
+  brandPreview,
+  tags,
+}) {
   const brandStyle = brandPreview
     ? {
         '--brand-bg': brandPreview.background ?? '#f8f9fb',
@@ -38,6 +51,22 @@ function ProjectCard({ title, projectUrl, githubUrl, bullets, previewImage, prev
         '--brand-logo-scale': String(brandPreview.logoScale ?? 1),
       }
     : undefined
+
+  const previewStyle = {
+    ...brandStyle,
+    ...(previewBackground && !brandPreview ? { background: previewBackground } : undefined),
+    ...(previewPadding && !brandPreview ? { padding: previewPadding } : undefined),
+  }
+
+  const previewClassName = [
+    'projectPreview',
+    brandPreview && 'projectPreviewBrand',
+    previewImage && !brandPreview && 'projectPreviewScreenshot',
+  ]
+    .filter(Boolean)
+    .join(' ')
+
+  const showPreview = SHOW_PROJECT_PREVIEWS && (brandPreview || previewImage)
 
   return (
     <article className="projectCard">
@@ -56,34 +85,47 @@ function ProjectCard({ title, projectUrl, githubUrl, bullets, previewImage, prev
         )}
       </header>
 
-      <div className="projectCardBody">
-        <ul className="projectCardBullets">
-          {bullets.map((bullet) => (
-            <li key={bullet}>{bullet}</li>
-          ))}
-        </ul>
+      <div
+        className={showPreview ? 'projectCardBody' : 'projectCardBody projectCardBodyTextOnly'}
+      >
+        {description ? (
+          <div className="projectCardDescription">
+            {(Array.isArray(description) ? description : [description]).map((paragraph) => (
+              <p key={paragraph}>{paragraph}</p>
+            ))}
+          </div>
+        ) : (
+          <ul className="projectCardBullets">
+            {bullets.map((bullet) => (
+              <li key={bullet}>{bullet}</li>
+            ))}
+          </ul>
+        )}
 
-        <div
-          className={brandPreview ? 'projectPreview projectPreviewBrand' : 'projectPreview'}
-          style={brandStyle}
-        >
+        {showPreview && (
+        <div className={previewClassName} style={previewStyle}>
           {brandPreview ? (
             <div
               className={[
                 'projectBrandPreview',
-                !brandPreview.tagline && 'projectBrandPreviewNoTagline',
+                brandPreview.logoOnly && 'projectBrandPreviewLogoOnly',
+                !brandPreview.tagline && !brandPreview.logoOnly && 'projectBrandPreviewNoTagline',
                 brandPreview.textOverImage && 'projectBrandPreviewTextOverImage',
               ]
                 .filter(Boolean)
                 .join(' ')}
               style={brandStyle}
             >
-              {brandPreview.textOverImage ? (
+              {brandPreview.logoOnly ? (
+                <div className="projectBrandLogoWrap">
+                  <img
+                    src={brandPreview.logo}
+                    alt={brandPreview.name || title}
+                    className="projectBrandLogo"
+                  />
+                </div>
+              ) : brandPreview.textOverImage ? (
                 <>
-                  <p className="projectBrandName projectBrandNameSpacer" aria-hidden="true">
-                    {brandPreview.name}
-                  </p>
-                  <p className="projectBrandName">{brandPreview.name}</p>
                   <div className="projectBrandLogoWrap">
                     <img
                       src={brandPreview.logo}
@@ -92,6 +134,7 @@ function ProjectCard({ title, projectUrl, githubUrl, bullets, previewImage, prev
                       aria-hidden="true"
                     />
                   </div>
+                  <p className="projectBrandName">{brandPreview.name}</p>
                   {brandPreview.tagline && (
                     <p className="projectBrandTagline">{brandPreview.tagline}</p>
                   )}
@@ -122,6 +165,7 @@ function ProjectCard({ title, projectUrl, githubUrl, bullets, previewImage, prev
             </div>
           )}
         </div>
+        )}
       </div>
 
       <footer className="projectCardFooter">
