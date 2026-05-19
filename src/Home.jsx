@@ -6,7 +6,8 @@ function Home() {
 
   return (
     <div>
-      <p className="homeHead"> Hi, I'm Aditi <br/> Welcome to my personal website. </p>
+      <p className="homeHead"> Hi, I'm Aditi <br/> </p>
+      <p className="homeBody"> I'm a computer science student at the University of Virginia. I also enjoy writing and finding creative ways to express my ideas. </p>
       <button className="projectsButton" onClick={() => navigate('/projects')}>Projects</button>
       <button className="writingButton" onClick={() => navigate('/writing')}>Writing</button>
     </div>

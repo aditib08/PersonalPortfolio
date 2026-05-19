@@ -1,18 +1,32 @@
 .homeHead {
-  font-family: 'Courier New', monospace;
-  color: black;
-  font-size: 30px;
+  font-family: 'Lucida Console', monospace;
+  color: #222021;
+  font-size: 40px;
   margin: 40px;
 }
 
-.projectsHead {
-  font-family: 'Courier New', monospace;
-  color: black;
+.homeBody {
+  font-family: 'Lucida Console', monospace;
+  color: #222021;
   font-size: 20px;
   margin: 40px;
 }
 
-.projectsButton {
+.projectsHead {
+  font-family: 'Lucida Console', monospace;
+  color: #222021;
+  font-size: 20px;
+  margin: 40px;
+}
+
+.writingHead {
+  font-family: 'Lucida Console', monospace;
+  color: #222021;
+  font-size: 20px;
+  margin: 40px;
+}
+
+.projectsButton, .writingButton {
   background-color: #008CBA;
   border: none;
   color: white;
@@ -21,58 +35,49 @@
   text-decoration: none;
   display: inline-block;
   font-size: 30px;
-  font-family: 'Courier New', monospace;
+  font-family: 'Lucida Console', monospace;
   margin: 100px 4px 2px;
   cursor: pointer;
 }
 
-.writingHead {
-  font-family: 'Courier New', monospace;
-  color: black;
-  font-size: 20px;
-  margin: 40px;
+.articles-container {
+  display: flex;
+  gap: 32px;
+  padding: 40px 60px;
+  margin-bottom: 100px;
 }
 
-.writingButton {
-  background-color: #008CBA; 
-  border: none;
-  color: white;
-  padding: 15px 32px;
-  text-align: center;
-  text-decoration: none;
-  display: inline-block;
-  font-size: 30px;
-  font-family: 'Courier New', monospace;
-  margin: 100px 4px 2px;
-  cursor: pointer;
-}
-
-.burnoutarticle {
-  width: 400px;
+.article-card {
+  flex: 1;
+  min-width: 0;
   border-radius: 15px;
   overflow: hidden;
   cursor: pointer;
+  transition: transform 0.2s;
 }
 
-.burnoutarticle img {
+.article-card:hover {
+  transform: scale(1.05);
+}
+
+.article-card img {
   width: 100%;
+  height: 400px;
+  object-fit: cover;
 }
 
-.burnoutarticle p {
+.article-card p {
   font-size: 20px;
+  font-family: 'Lucida Console', monospace;
   font-weight: bold;
   background-color: #e8e8e8;
   padding: 20px;
   margin: 0;
 }
 
-.burnoutarticle-container {
-  margin: 60px 0px 0px 60px;
-  display: flex;
-  gap: 20px;
-}
-
-a {
+.articles-container a {
   text-decoration: none;
-  color: black;
+  color: #222021;
+  flex: 1;
+  min-width: 0;
 }
