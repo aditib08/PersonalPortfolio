@@ -1,0 +1,13 @@
+{
+  "hosting": {
+    "site": "aditi-portfolio-326f7-70331",
+    "public": "dist",
+    "ignore": ["firebase.json", "**/.*", "**/node_modules/**"],
+    "rewrites": [
+      {
+        "source": "**",
+        "destination": "/index.html"
+      }
+    ]
+  }
+}

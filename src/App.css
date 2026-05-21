@@ -80,6 +80,34 @@
   box-sizing: border-box;
 }
 
+.homeIntro--card {
+  animation: homeIntroCardIn 0.5s ease forwards;
+}
+
+@keyframes homeIntroCardIn {
+  from {
+    opacity: 0.85;
+    transform: translateY(6px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.homeRest {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+  animation: homeContentFadeIn 0.6s ease forwards;
+}
+
+.pageRest {
+  animation: homeContentFadeIn 0.6s ease forwards;
+}
+
 .homeHead {
   font-family: 'Lucida Console', monospace;
   font-size: 40px;
@@ -102,12 +130,8 @@
   animation: homeHeadBlink 0.75s step-end infinite;
 }
 
-.homeAbout--visible {
-  animation: homeContentFadeIn 0.6s ease 0.15s forwards;
-  opacity: 0;
-}
 
-.homePage:has(.homeAbout--visible) {
+.homePage:has(.homeRest) {
   padding: 0 0 48px;
   box-sizing: border-box;
 }
@@ -136,6 +160,7 @@
   padding: 0 40px;
   box-sizing: border-box;
   text-align: left;
+  align-self: stretch;
 }
 
 .homeAboutLayout {
@@ -197,11 +222,11 @@
   font-size: 20px;
   width: 100%;
   max-width: 52rem;
-  margin: 20px 0 0;
-  padding: 0;
+  margin: 24px auto 0;
+  padding: 0 40px;
   box-sizing: border-box;
   text-align: center;
-  animation: homeContentFadeIn 0.6s ease forwards;
+  align-self: center;
 }
 
 @media (max-width: 768px) {
@@ -209,11 +234,15 @@
     padding: 20px 24px 0;
   }
 
+  .homeQuote {
+    padding: 0 24px;
+  }
+
   .homeAbout {
     padding: 0 24px;
   }
 
-  .homePage:has(.homeAbout--visible) {
+  .homePage:has(.homeRest) {
     padding: 0 0 32px;
   }
 
@@ -236,9 +265,13 @@
   font-family: 'Lucida Console', monospace;
   font-size: clamp(72px, 15vw, 140px);
   font-weight: 700;
-  line-height: 1.05;
+  line-height: 1.2;
   text-align: center;
-  margin: 56px 32px 48px;
+  margin: 48px 32px 40px;
+  padding: 0.1em 16px 0.14em;
+  overflow: visible;
+  display: block;
+  box-sizing: border-box;
   background: var(--ombre-gradient);
   background-size: 220% 100%;
   background-clip: text;
@@ -267,6 +300,7 @@
 
 .writingPage {
   text-align: center;
+  overflow: visible;
 }
 
 .writingHead {
@@ -365,6 +399,7 @@
 
 .projectsPage {
   text-align: left;
+  overflow: visible;
 }
 
 .projectsList {
