@@ -53,7 +53,6 @@ function Home() {
             <div className="homeAboutPhoto">
               <img
                 src={aditiPortrait}
-                alt="Aditi smiling outdoors in a park"
                 className="homeAboutPhotoImg"
               />
             </div>

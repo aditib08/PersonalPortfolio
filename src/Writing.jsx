@@ -1,6 +1,29 @@
 import './App.css'
-import burnoutImg from './assets/burnoutimage.png'
-import indiadayImg from './assets/indiaday.png'
+import cavalierDailyImg from './assets/writing-cavalier-daily.png'
+import opinionColumnsImg from './assets/writing-opinion-columns.png'
+import filmReviewsImg from './assets/writing-film-reviews.png'
+
+const WRITING_LINKS = [
+  {
+    title: 'Cavalier Daily',
+    href: 'https://www.cavalierdaily.com/staff/aditi-burra',
+    image: cavalierDailyImg,
+    alt: 'Cavalier Daily articles by Aditi Burra',
+    imageClass: 'writingBoxImg--cavalier',
+  },
+  {
+    title: 'Opinion',
+    href: 'https://didisarchive.substack.com/t/column',
+    image: opinionColumnsImg,
+    alt: "Opinion columns on didi's archive",
+  },
+  {
+    title: 'Film Reviews',
+    href: 'https://didisarchive.substack.com/t/film',
+    image: filmReviewsImg,
+    alt: "Film reviews on didi's archive",
+  },
+]
 
 function Writing() {
   return (
@@ -8,23 +31,28 @@ function Writing() {
       <h1 className="pageOmbreTitle">Writing</h1>
       <p className="writingHead">
         "When we pass over into how a knight thinks, how a slave feels, how a heroine behaves, and how an evildoer can regret or deny wrongdoing, we never come back quite the same; sometimes we're inspired, sometimes saddened, but we are always enriched."
-        <br />  <br /> Maryanne Wolf | Reader, Come Home
+        <br /> <br /> Maryanne Wolf | Reader, Come Home
       </p>
 
-      <div className="articles-container">
-        <a href="https://www.cavalierdaily.com/article/2026/03/from-break-to-burnout-why-coming-back-to-school-can-be-more-difficult-than-anticipated" target="_blank" rel="noopener noreferrer">
-          <div className="article-card">
-            <img src={burnoutImg} alt="From Break to Burnout" />
-            <p>From Break to Burnout</p>
-          </div>
-        </a>
-
-        <a href="https://www.cavalierdaily.com/article/2026/04/india-day-celebrates-strong-arts-and-a-stronger-community" target="_blank" rel="noopener noreferrer">
-          <div className="article-card">
-            <img src={indiadayImg} alt="India Day" />
-            <p>India Day</p>
-          </div>
-        </a>
+      <div className="writingBoxes">
+        {WRITING_LINKS.map(({ title, href, image, alt, imageClass }) => (
+          <a
+            key={title}
+            href={href}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="writingBoxLink"
+          >
+            <article className="writingBox">
+              <img
+                src={image}
+                alt={alt}
+                className={imageClass ? `writingBoxImg ${imageClass}` : 'writingBoxImg'}
+              />
+              <p className="writingBoxTitle">{title}</p>
+            </article>
+          </a>
+        ))}
       </div>
     </div>
   )

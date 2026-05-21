@@ -156,7 +156,7 @@
   font-weight: 700;
   line-height: 1.05;
   text-align: left;
-  margin: 0 0 20px;
+  margin: 20px 0 20px;
   padding: 0 0 0.08em;
   background: var(--ombre-gradient);
   background-size: 220% 100%;
@@ -188,7 +188,6 @@
   color: #222021;
   font-size: 20px;
   line-height: 1.6;
-  margin: 0;
   max-width: 36rem;
 }
 
@@ -292,46 +291,76 @@
   cursor: pointer;
 }
 
-.articles-container {
-  display: flex;
-  gap: 32px;
-  padding: 40px 60px;
-  margin-bottom: 100px;
-}
-
-.article-card {
-  flex: 1;
-  min-width: 0;
-  border-radius: 15px;
-  overflow: hidden;
-  cursor: pointer;
-  transition: transform 0.2s;
-}
-
-.article-card:hover {
-  transform: scale(1.05);
-}
-
-.article-card img {
+.writingBoxes {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 40px;
+  padding: 40px 48px 100px;
   width: 100%;
-  height: 460px;
-  object-fit: cover;
+  max-width: 1140px;
+  margin: 0 auto;
+  box-sizing: border-box;
 }
 
-.article-card p {
-  font-size: 24px;
-  font-family: 'Lucida Console', monospace;
-  font-weight: bold;
-  background-color: #e8e8e8;
-  padding: 20px;
-  margin: 0;
-}
-
-.articles-container a {
+.writingBoxLink {
   text-decoration: none;
   color: #222021;
-  flex: 1;
   min-width: 0;
+}
+
+.writingBox {
+  border-radius: 16px;
+  overflow: hidden;
+  border: 1px solid #e5e4e7;
+  background: #fff;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.writingBoxLink:hover .writingBox,
+.writingBoxLink:focus-visible .writingBox {
+  transform: translateY(-4px);
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.08);
+}
+
+.writingBoxImg {
+  display: block;
+  width: 100%;
+  height: min(58vh, 560px);
+  min-height: 380px;
+  object-fit: cover;
+  object-position: center;
+}
+
+.writingBoxImg--cavalier {
+  object-fit: cover;
+  object-position: center top;
+}
+
+.writingBoxTitle {
+  font-size: 28px;
+  font-family: 'Lucida Console', monospace;
+  font-weight: 700;
+  background-color: #f3f2f4;
+  padding: 24px 20px;
+  margin: 0;
+  text-align: center;
+}
+
+@media (max-width: 768px) {
+  .writingBoxes {
+    padding: 32px 20px 80px;
+    gap: 32px;
+  }
+
+  .writingBoxImg {
+    height: min(44vh, 420px);
+    min-height: 260px;
+  }
+
+  .writingBoxTitle {
+    font-size: 22px;
+    padding: 20px 16px;
+  }
 }
 
 .projectsPage {
